@@ -1,0 +1,131 @@
+L_ 脚本语言用户手册
+概述
+L_ 是一种简单的解释型编程语言，立志于专于ASCII游戏的开发。
+开发者：绛衣虹人
+
+基本语法
+0.注释
+// 单行注释
+
+1. 变量定义
+define_type_name[value]
+
+type: 变量类型 (int, float, string, bool)
+name: 变量名
+value: 变量值
+示例:
+
+define_int_num[42]
+define_float_price[3.14]
+define_string_name["Hello"]
+define_bool_flag[true]
+
+2. 变量输出
+output_variableName
+output_"literal string"
+
+示例:
+
+output_num         // 输出变量num的值
+output_"Hello"     // 直接输出字符串
+
+3. 算术运算
+calc_resultVar[operator]operand1;operand2
+
+operator: 运算符 (+, -, *, /)
+operand1 和 operand2: 操作数（可以是变量或字面值）
+示例:
+
+calc_sum[+]num1;num2
+calc_product[*]price;quantity
+
+4. 标签定义
+sign_labelName
+
+定义标签，用于跳转指令
+
+5. 跳转指令
+jump_labelName
+
+无条件跳转到指定标签
+
+jump_if_conditionVar_targetLabel
+
+条件跳转（当conditionVar为true时跳转）
+
+示例:
+
+jump_loopStart
+jump_if_flag_end
+
+6. 条件判断
+if_(condition)t[statement]
+
+condition: 条件表达式 (如 var1==var2, var1>10)
+statement: 条件为真时执行的语句
+示例:
+
+if_(a>b)t[output_"a is greater"]
+
+7. 系统命令
+system_command
+
+执行系统命令
+
+示例:
+
+system_ls -l
+
+示例程序
+// 定义变量
+define_int_a[10]
+define_int_b[20]
+
+// 计算和
+calc_sum[+]a;b
+output_sum
+
+// 条件判断
+if_(a>b)t[output_"a is greater"]
+if_(b>a)t[output_"b is greater"]
+
+// 循环示例
+define_int_i[0]
+sign_loopStart
+output_i
+calc_i[+]i;1
+if_(i<5)t[jump_loopStart]
+
+// 系统命令
+system_echo "Script completed"
+
+注意事项
+变量名区分大小写
+字符串需要用双引号括起来
+注释使用 // 开头
+每行只能有一条指令
+条件跳转目前只支持整数条件变量
+错误处理
+程序执行过程中遇到的错误会显示在标准错误输出，格式为:
+
+错误 [行X]: 错误描述
+
+运行方式
+linux:./L_ script.l_
+windows: L_.exe script.l_
+
+其中 script.l_ 是包含L_脚本的文件
+
+进阶使用：
+1. 函数
+sign_start
+output_" __        __  _____    __        __  ___   _       _         ____     ___    _   _   _____ "
+output_" \ \      / / | ____|   \ \      / / |_ _| | |     | |       |  _ \   / _ \  | \ | | | ____|"
+output_"  \ \ /\ / /  |  _|      \ \ /\ / /   | |  | |     | |       | | | | | | | | |  \| | |  _|  "
+output_"   \ V  V /   | |___      \ V  V /    | |  | |___  | |___    | |_| | | |_| | | |\  | | |___ "
+output_"    \_/\_/    |_____|      \_/\_/    |___| |_____| |_____|   |____/   \___/  |_| \_| |_____|"
+jump_over
+//上面声明了一个函数
+jump_start
+sign_over
+//上面调用了函数
